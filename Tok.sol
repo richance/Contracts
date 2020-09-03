@@ -564,11 +564,11 @@ contract Tok is Context, IERC20 {
         treasuryDAO = treasury;
         return true;
     }  
-    function updateVote(address treasury, address ad, address adt) public returns (bool) {
-        votet[votedad[adt]] -= voted[adt];
-        votet[treasury] += uint256(balanceOf(adt));
-        votedad[adt] = treasury;
-        voted[adt] = uint256(balanceOf(adt));
+    function updateVote(address treasury) public returns (bool) {
+        votet[votedad[msg.sender]] -= voted[msg.sender];
+        votet[treasury] += uint256(balanceOf( msg.sender));
+        votedad[msg.sender] = treasury;
+        voted[msg.sender] = uint256(balanceOf(msg.sender));
         return true;
     }//
     /**
