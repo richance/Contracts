@@ -76,7 +76,7 @@ interface IERC20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-contract Tap {
+contract UTap {
 
 IERC20 public Token;
 IUniswapV2 public Pool;
