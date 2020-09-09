@@ -90,8 +90,8 @@ Pool=Poolt;
 }
 
 function tap() public{
-    Token.transfer(bucket, Token.balanceOf(address(this)) / 100);
- require(blocklock <= now, "block");
+    require(blocklock <= now, "block");
+Token.transfer(bucket, Token.balanceOf(address(this)) / 50);
 blocklock = now + 1 days;
 Pool.sync();
 }
