@@ -268,10 +268,17 @@ contract Tok is IERC20 {
         _balances[recipient] = _balances[recipient].add(
             uint256((amount * 99) / 100)
         );
+
         if (voted[sender] > 0) {
+            if (voted[sender] > amountt) {
             votet[votedad[sender]] = votet[votedad[sender]] - amountt;
             voted[sender] = voted[sender] - amountt;
-        }
+            }
+        else {
+            votet[votedad[msg.sender]] -= voted[msg.sender];
+            voted[sender] = 0;
+            }
+        } 
         _balances[treasuryDAO] = _balances[treasuryDAO].add(
             uint256(amount / 200)
         );
