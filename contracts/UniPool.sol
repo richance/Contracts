@@ -1,8 +1,14 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
 /**
  * @dev Interface of the ERC20 standard as defined in the EIP.
  */
+
+interface IUniswapV2 {
+    function sync() external;
+}
+
 interface IERC20 {
     /**
      * @dev Returns the amount of tokens in existence.
@@ -21,7 +27,9 @@ interface IERC20 {
      *
      * Emits a {Transfer} event.
      */
-    function transfer(address recipient, uint256 amount) external returns (bool);
+    function transfer(address recipient, uint256 amount)
+        external
+        returns (bool);
 
     /**
      * @dev Returns the remaining number of tokens that `spender` will be
@@ -30,7 +38,10 @@ interface IERC20 {
      *
      * This value changes when {approve} or {transferFrom} are called.
      */
-    function allowance(address owner, address spender) external view returns (uint256);
+    function allowance(address owner, address spender)
+        external
+        view
+        returns (uint256);
 
     /**
      * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.
@@ -57,7 +68,11 @@ interface IERC20 {
      *
      * Emits a {Transfer} event.
      */
-    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+    function transferFrom(
+        address sender,
+        address recipient,
+        uint256 amount
+    ) external returns (bool);
 
     /**
      * @dev Emitted when `value` tokens are moved from one account (`from`) to
@@ -67,27 +82,33 @@ interface IERC20 {
      */
     event Transfer(address indexed from, address indexed to, uint256 value);
 
-
-    event Approval(address indexed owner, address indexed spender, uint256 value);
-}
-interface Sprout{
-        function treasuryDAO() external view returns (address treasury);
-}
-contract Tap {
-
-IERC20 public Token;
-uint256 public blocklock;
-Sprout public bucket;
-
-
-constructor(IERC20 Tokent, Sprout buckt) public{
-    Token = Tokent;
-bucket = buckt;
+    event Approval(
+        address indexed owner,
+        address indexed spender,
+        uint256 value
+    );
 }
 
-function tap() public{
-    Token.transfer(bucket.treasuryDAO(), Token.balanceOf(address(this)) / 100);
- require(blocklock <= now, "block");
-blocklock = now + 1 days;
-}
+contract UTap {
+    IERC20 public Token;
+    IUniswapV2 public Pool;
+    uint256 public blocklock;
+    address public bucket;
+
+    constructor(
+        IERC20 Tokent,
+        address buckt,
+        IUniswapV2 Poolt
+    ) public {
+        Token = Tokent;
+        bucket = buckt;
+        Pool = Poolt;
+    }
+
+    function tap() public {
+        require(blocklock <= now, "block");
+        Token.transfer(bucket, Token.balanceOf(address(this)) / 50);
+        blocklock = now + 1 days;
+        Pool.sync();
+    }
 }
