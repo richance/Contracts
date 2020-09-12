@@ -23,6 +23,10 @@ contract Tok is IERC20 {
     uint256 public burnedSupply;
     address public treasuryDAO;
 
+event newTreasury(
+        address indexed treasuryad
+    );
+
     /**
      * @dev values for {name} and {symbol}, initializes {decimals} with
      * a default value of 18.
@@ -169,6 +173,7 @@ contract Tok is IERC20 {
     function setNewTDao(address treasury) public returns (bool) {
         require(votet[treasury] >= uint256((_totalSupply * 51) / 100));
         treasuryDAO = treasury;
+        emit newTreasury(treasury);
         return true;
     }
 
