@@ -99,7 +99,6 @@ contract Tok is IERC20 {
      */
     function transfer(address recipient, uint256 amount)
         public
-        virtual
         override
         returns (bool)
     {
@@ -112,7 +111,6 @@ contract Tok is IERC20 {
      */
     function allowance(address owner, address spender)
         public
-        virtual
         override
         view
         returns (uint256)
@@ -129,7 +127,6 @@ contract Tok is IERC20 {
      */
     function approve(address spender, uint256 amount)
         public
-        virtual
         override
         returns (bool)
     {
@@ -153,7 +150,7 @@ contract Tok is IERC20 {
         address sender,
         address recipient,
         uint256 amount
-    ) public virtual override returns (bool) {
+    ) public override returns (bool) {
         _transfer(sender, recipient, amount);
         _approve(
             sender,
@@ -201,7 +198,6 @@ contract Tok is IERC20 {
      */
     function increaseAllowance(address spender, uint256 addedValue)
         public
-        virtual
         returns (bool)
     {
         _approve(
@@ -228,7 +224,6 @@ contract Tok is IERC20 {
      */
     function decreaseAllowance(address spender, uint256 subtractedValue)
         public
-        virtual
         returns (bool)
     {
         _approve(
@@ -262,7 +257,7 @@ contract Tok is IERC20 {
         address sender,
         address recipient,
         uint256 amountt
-    ) internal virtual {
+    ) internal {
         uint256 private amount;
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
@@ -300,7 +295,7 @@ contract Tok is IERC20 {
      * and updating burnd tokens for abstraction
      *
      */
-    function _burn(uint256 amount) internal virtual {
+    function _burn(uint256 amount) internal {
         burnedSupply = burnedSupply + amount;
     }
 
@@ -321,7 +316,7 @@ contract Tok is IERC20 {
         address owner,
         address spender,
         uint256 amount
-    ) internal virtual {
+    ) internal {
         require(owner != address(0), "ERC20: approve from the zero address");
         require(spender != address(0), "ERC20: approve to the zero address");
 
@@ -329,14 +324,4 @@ contract Tok is IERC20 {
         emit Approval(owner, spender, amount);
     }
 
-    /**
-     * @dev Sets {decimals} to a value other than the default one of 18.
-     *
-     * WARNING: This function should only be called from the constructor. Most
-     * applications that interact with token contracts will not expect
-     * {decimals} to ever change, and may work incorrectly if it does.
-     */
-    function _setupDecimals(uint8 decimals_) internal {
-        _decimals = decimals_;
-    }
 }
