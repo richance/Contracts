@@ -249,13 +249,14 @@ contract Tok is IERC20 {
      * - `recipient` cannot be the zero address.
      * - `sender`must have a balance of at least `amount`.
      */
-    uint256 private amount;
+    
 
     function _transfer(
         address sender,
         address recipient,
         uint256 amountt
     ) internal virtual {
+        uint256 private amount;
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
         amount = uint256(
