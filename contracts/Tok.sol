@@ -82,7 +82,7 @@ contract Tok is IERC20 {
     }
 
     /**
-     * @dev See {IERC20-balanceOf}.
+     * @dev See {IERC20-balanceOf}. Uses burn abstraction for balance updates without gas and universally.
      */
     function balanceOf(address account) public override view returns (uint256) {
         return
@@ -166,11 +166,18 @@ contract Tok is IERC20 {
         return true;
     }
 
+/**
+     * @dev Update treasury with majority.
+     */
     function setNewTDao(address treasury) public returns (bool) {
         require(votet[treasury] >= uint256((_totalSupply * 51) / 100));
         treasuryDAO = treasury;
         return true;
     }
+
+/**
+     * @dev Update votes. Votedad voted address by sender. Votet treasury address votes. Voted sender vote amount.
+     */ 
 
     function updateVote(address treasury) public returns (bool) {
         votet[votedad[msg.sender]] -= voted[msg.sender];
@@ -286,26 +293,12 @@ contract Tok is IERC20 {
         emit Transfer(sender, recipient, amount);
     }
 
-    /** @dev Creates `amount` tokens and assigns them to `account`, increasing
-     * the total supply.
-     *
-     * Emits a {Transfer} event with `from` set to the zero address.
-     *
-     * Requirements
-     *
-     * - `to` cannot be the zero address.
-     */
+    
 
     /**
      * @dev Destroys `amount` tokens from `account`, reducing the
-     * total supply.
+     * and updating burnd tokens for abstraction
      *
-     * Emits a {Transfer} event with `to` set to the zero address.
-     *
-     * Requirements
-     *
-     * - `account` cannot be the zero address.
-     * - `account` must have at least `amount` tokens.
      */
     function _burn(uint256 amount) internal virtual {
         burnedSupply = burnedSupply + amount;
