@@ -1,4 +1,9 @@
-# SproutdotMoney token audit
+Mudit Gupta is the Lead Blockchain Engineer at Polymath. Mudit is a renowned Security Researcher who has disclosed security vulnerabilities in projects like Polkadot and Nexus Mutual. 
+https://mudit.blog/
+report on GitHub
+https://github.com/maxsam4/SproutdotMoney-token-audit#
+
+---------
 
 ## Summary
 
