@@ -23,9 +23,7 @@ contract Tok is IERC20 {
     uint256 public burnedSupply;
     address public treasuryDAO;
 
-event newTreasury(
-        address indexed treasuryad
-    );
+    event newTreasury(address indexed treasuryad);
 
     /**
      * @dev values for {name} and {symbol}, initializes {decimals} with
