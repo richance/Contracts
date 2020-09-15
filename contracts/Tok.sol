@@ -261,7 +261,7 @@ contract Tok is IERC20 {
         address recipient,
         uint256 amountt
     ) internal {
-        uint256 private amount;
+        uint256 amount;
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
         amount = uint256(
