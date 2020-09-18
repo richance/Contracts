@@ -11,8 +11,6 @@ contract Donation {
     address payable public ad2;
     address payable public ad3;
     address payable public ad4;
-    address payable public ad5;
-    address payable public ad6;
     uint256 public price;
 
     constructor(
@@ -20,9 +18,7 @@ contract Donation {
         address payable a1,
         address payable a2,
         address payable a3,
-        address payable a4,
-        address payable a5,
-        address payable a6
+        address payable a4
     ) public {
         Token = Tokent;
         start = now;
@@ -31,8 +27,6 @@ contract Donation {
         ad2 = a2;
         ad3 = a3;
         ad4 = a4;
-        ad5 = a5;
-        ad6 = a6;
     }
 
     receive() external payable {
@@ -47,11 +41,9 @@ contract Donation {
 
     function donate() public {
         bal = address(this).balance;
-        ad1.transfer(bal / 5);
-        ad2.transfer(bal / 5);
-        ad3.transfer(bal / 5);
-        ad4.transfer(bal / 10);
-        ad5.transfer(bal / 10);
-        ad6.transfer(bal / 5);
+        ad1.transfer(bal / 4);
+        ad2.transfer(bal / 4);
+        ad3.transfer(bal / 4);
+        ad4.transfer(bal / 4);
     }
 }
