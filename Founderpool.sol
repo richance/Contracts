@@ -15,10 +15,13 @@ contract Tap {
         Token = Tokent;
         bucket = buckt;
     }
-
+    uint256 public bal;
     function tap() public {
         require(blocklock <= now, "block");
-        Token.transfer(bucket, Token.balanceOf(address(this)) / 40);
-        blocklock = now + 7 days;
+          if (bal <= Token.balanceOf(address(this))) {
+          bal = Token.balanceOf(address(this));
+          }
+        Token.transfer(bucket, Token.balanceOf(address(this)) / 24);
+        blocklock = now + 14 days;
     }
 }
