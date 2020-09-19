@@ -39,9 +39,9 @@ contract Tok is IERC20 {
         _symbol = "Seed";
         _decimals = 18;
         treasuryDAO = ad;
-        _totalSupply = 1000000 * 10**uint256(_decimals);
-        _balances[msg.sender] = 1000000 * 10**uint256(_decimals);
-        emit Transfer(address(0), msg.sender, 1000000 * 10**uint256(_decimals));
+        _totalSupply = 10000000 * 10**uint256(_decimals);
+        _balances[msg.sender] = 10000000 * 10**uint256(_decimals);
+        emit Transfer(address(0), msg.sender, 10000000 * 10**uint256(_decimals));
     }
 
     /**
