@@ -503,7 +503,7 @@ contract TokenWrapper is ReentrancyGuard {
 contract SRewards is TokenWrapper, RewardsDistributionRecipient {
     IERC20 public rewardsToken;
 
-    uint256 public constant DURATION = 21 days;
+    uint256 public constant DURATION = 14 days;
 
     uint256 public periodFinish = 0;
     uint256 public rewardRate = 0;
