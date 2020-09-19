@@ -22,7 +22,7 @@ contract Donation {
     ) public {
         Token = Tokent;
         start = now;
-        finish = now + 1 days;
+        finish = now + 100 days;
         ad1 = a1;
         ad2 = a2;
         ad3 = a3;
