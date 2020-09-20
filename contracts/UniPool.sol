@@ -23,6 +23,7 @@ contract UTap {
     }
 
     function tap() public {
+        require(tx.origin == msg.sender);
         require(blocklock <= now, "block");
         Token.transfer(bucket, Token.balanceOf(address(this)) / 50);
         blocklock = now + 1 days;
