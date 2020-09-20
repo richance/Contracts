@@ -1,0 +1,31 @@
+{
+  "name": "Contracts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "buidler compile",
+    "flatten": "buidler flatten"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SproutdotMoney/Contracts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SproutdotMoney/Contracts/issues"
+  },
+  "homepage": "https://github.com/SproutdotMoney/Contracts#readme",
+  "dependencies": {
+    "@nomiclabs/buidler": "^1.4.7",
+    "@nomiclabs/buidler-waffle": "^2.1.0",
+    "@openzeppelin/contracts": "^3.2.0",
+    "@uniswap/v2-core": "^1.0.1",
+    "ethereum-waffle": "^3.1.0",
+    "prettier": "^2.1.2",
+    "prettier-plugin-solidity": "^1.0.0-alpha.57",
+    "solium": "^1.2.5"
+  }
+}
