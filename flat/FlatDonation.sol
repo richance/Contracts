@@ -87,7 +87,6 @@ interface IERC20 {
 pragma solidity ^0.6.0;
 
 
-
 contract Donation {
     IERC20 public Token;
     uint256 public start;
@@ -96,7 +95,6 @@ contract Donation {
     address payable public ad2;
     address payable public ad3;
     address payable public ad4;
-    uint256 public price;
 
     constructor(
         IERC20 Tokent,
@@ -126,9 +124,14 @@ contract Donation {
 
     function donate() public {
         bal = address(this).balance;
-        ad1.transfer(bal / 4);
-        ad2.transfer(bal / 4);
-        ad3.transfer(bal / 4);
-        ad4.transfer(bal / 4);
+        _transfer(ad1, bal / 4);
+        _transfer(ad2, bal / 4);
+        _transfer(ad3, bal / 4);
+        _transfer(ad4, bal / 4);
+    }
+
+    function _transfer(address payable to, uint256 amount) internal {
+      (bool success,) = to.call{value: amount}();
+      require(success, "Donation: Error transferring ether.");
     }
 }
