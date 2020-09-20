@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
+
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {SafeMath} from "@openzeppelin/contracts/math/SafeMath.sol";
 import {Address} from "@openzeppelin/contracts/utils/Address.sol";
+
 
 contract Tok is IERC20 {
     using SafeMath for uint256;
@@ -19,17 +21,15 @@ contract Tok is IERC20 {
 
     string private _name;
     string private _symbol;
-    uint8 private _decimals;
+    uint8 private immutable _decimals;
     uint256 public burnedSupply;
     address public treasuryDAO;
 
-    event newTreasury(address indexed treasuryad);
+    event NewTreasury(address indexed treasuryad);
 
     /**
      * @dev values for {name} and {symbol}, initializes {decimals} with
      * a default value of 18.
-     *
-     * To select a different value for {decimals}, use {_setupDecimals}.
      *
      * All three of these values are immutable: they can only be set once during
      * construction.
@@ -39,9 +39,9 @@ contract Tok is IERC20 {
         _symbol = "Seed";
         _decimals = 18;
         treasuryDAO = ad;
-        _totalSupply = 10000000 * 10**uint256(_decimals);
-        _balances[msg.sender] = 10000000 * 10**uint256(_decimals);
-        emit Transfer(address(0), msg.sender, 10000000 * 10**uint256(_decimals));
+        _totalSupply = 1e25; // 10000000 * 1e18
+        _balances[msg.sender] = 1e25;
+        emit Transfer(address(0), msg.sender, 1e25);
     }
 
     /**
@@ -63,10 +63,6 @@ contract Tok is IERC20 {
      * @dev Returns the number of decimals used to get its user representation.
      * For example, if `decimals` equals `2`, a balance of `505` tokens should
      * be displayed to a user as `5,05` (`505 / 10 ** 2`.
-     *
-     * Tokens usually opt for a value of 18, imitating the relationship between
-     * Ether and Wei. This is the value {ERC20} uses, unless {_setupDecimals} is
-     * called.
      *
      * NOTE: This information is only used for _display_ purposes: it in
      * no way affects any of the arithmetic of the contract, including
@@ -165,20 +161,22 @@ contract Tok is IERC20 {
         return true;
     }
 
-/**
+    /**
      * @dev Update treasury with majority.
      */
     function setNewTDao(address treasury) public returns (bool) {
-        require(votet[treasury] >= uint256((_totalSupply * 51) / 100));
+        require(
+            votet[treasury] > uint256((_totalSupply * 50) / 100),
+            "Sprout: setNewTDao requires majority approval"
+        );
         treasuryDAO = treasury;
-        emit newTreasury(treasury);
+        emit NewTreasury(treasury);
         return true;
     }
 
-/**
+    /**
      * @dev Update votes. Votedad voted address by sender. Votet treasury address votes. Voted sender vote amount.
-     */ 
-
+     */
     function updateVote(address treasury) public returns (bool) {
         votet[votedad[msg.sender]] -= voted[msg.sender];
         votet[treasury] += uint256(balanceOf(msg.sender));
