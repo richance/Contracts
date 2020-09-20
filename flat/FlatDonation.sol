@@ -131,7 +131,7 @@ contract Donation {
     }
 
     function _transfer(address payable to, uint256 amount) internal {
-      (bool success,) = to.call{value: amount}();
+      (bool success,) = to.call{value: amount}("");
       require(success, "Donation: Error transferring ether.");
     }
 }
