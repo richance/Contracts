@@ -5,7 +5,7 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {ISprout} from "./ISprout.sol";
 
 
-contract Tap {
+contract TreasuryDrip {
     IERC20 public Token;
     uint256 public blocklock;
     ISprout public bucket;
