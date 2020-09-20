@@ -1,0 +1,15 @@
+[
+  {
+    "inputs": [],
+    "name": "treasuryDAO",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "treasury",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

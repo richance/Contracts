@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "buidler compile",
+    "build:abi": "yarn build && node ./write-abi.js",
     "flatten": "buidler flatten"
   },
   "repository": {
