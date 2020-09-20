@@ -1,5 +1,3 @@
-// Sources flattened with buidler v1.4.7 https://buidler.dev
-
 // File @openzeppelin/contracts/token/ERC20/IERC20.sol@v3.2.0
 
 // SPDX-License-Identifier: MIT
@@ -82,8 +80,6 @@ interface IERC20 {
 
 
 // File @openzeppelin/contracts/math/SafeMath.sol@v3.2.0
-
-// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.6.0;
 
@@ -246,8 +242,6 @@ library SafeMath {
 
 // File @openzeppelin/contracts/utils/Address.sol@v3.2.0
 
-// SPDX-License-Identifier: MIT
-
 pragma solidity ^0.6.2;
 
 /**
@@ -390,8 +384,6 @@ library Address {
 
 
 // File contracts/Tok.sol
-
-// SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
 
