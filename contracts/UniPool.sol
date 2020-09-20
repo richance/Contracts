@@ -6,6 +6,7 @@ import {
 } from "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
+
 contract UTap {
     IERC20 public Token;
     IUniswapV2Pair public Pool;
@@ -23,6 +24,7 @@ contract UTap {
     }
 
     function tap() public {
+        require(tx.origin == msg.sender, "UTap: External accounts only");
         require(blocklock <= now, "block");
         Token.transfer(bucket, Token.balanceOf(address(this)) / 50);
         blocklock = now + 1 days;
