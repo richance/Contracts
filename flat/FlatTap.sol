@@ -97,8 +97,6 @@ interface ISprout {
 pragma solidity ^0.6.0;
 
 
-
-
 contract Tap {
     IERC20 public Token;
     uint256 public blocklock;

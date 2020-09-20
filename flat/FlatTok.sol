@@ -395,9 +395,6 @@ library Address {
 pragma solidity ^0.6.0;
 
 
-
-
-
 contract Tok is IERC20 {
     using SafeMath for uint256;
     using Address for address;
