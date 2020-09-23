@@ -31,10 +31,6 @@ contract Donation {
     }
 
     receive() external payable {
-        if (now >=finish) {
-        start = now;
-        finish = now + 20 hours;
-        }
         Token.transfer(
             msg.sender,
             (msg.value * 10 * (finish - start)) /
@@ -55,5 +51,13 @@ contract Donation {
     function _transfer(address payable to, uint256 amount) internal {
       (bool success,) = to.call{value: amount}("");
       require(success, "Donation: Error transferring ether.");
+    }
+
+function reset() public {
+        require (msg.sender == drip);
+        if (now >=finish) {
+        start = now;
+        finish = now + 20 hours;
+        }   
     }
 }
