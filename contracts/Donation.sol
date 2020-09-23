@@ -23,7 +23,7 @@ contract Donation {
     ) public {
         Token = Tokent;
         start = now;
-        finish = now + 100 days;
+        finish = now + 20 hours;
         ad1 = a1;
         ad2 = a2;
         ad3 = a3;
@@ -31,6 +31,10 @@ contract Donation {
     }
 
     receive() external payable {
+        if (now >=finish) {
+        start = now;
+        finish = now + 20 hours;
+        }
         Token.transfer(
             msg.sender,
             (msg.value * 10 * (finish - start)) /
