@@ -3,20 +3,20 @@ pragma solidity ^0.6.0;
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-interface donation {
-    function reset() public returns (bool);
-}
+import {
+    IUniswapV2Pair
+} from "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol";
 
-contract dTap {
+contract UTap {
     IERC20 public Token;
-    donation public Pool;
+    IUniswapV2Pair public Pool;
     uint256 public blocklock;
     address public bucket;
 
     constructor(
         IERC20 Tokent,
         address buckt,
-        donation Poolt
+       IUniswapV2Pair Poolt
     ) public {
         Token = Tokent;
         bucket = buckt;
@@ -26,8 +26,8 @@ contract dTap {
     function tap() public {
         require(tx.origin == msg.sender, "UTap: External accounts only");
         require(blocklock <= now, "block");
-        Token.transfer(bucket, Token.balanceOf(address(this)) / 100);
-        blocklock = now + 20 hours;
-        Pool.reset();
+        Token.transfer(bucket, Token.balanceOf(address(this)) / 50);
+        blocklock = now + 1 days;
+        Pool.sync();
     }
 }
