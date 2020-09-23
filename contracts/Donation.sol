@@ -58,7 +58,7 @@ contract Donation {
 
 function reset() public {
         require (msg.sender == drip);
-        require (msg.sender == drip);
+        require (now >=finish);
         start = now;
         finish = now + 20 hours;
         }   
