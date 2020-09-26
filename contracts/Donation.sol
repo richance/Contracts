@@ -56,7 +56,7 @@ contract Donation {
       require(success, "Donation: Error transferring ether.");
     }
 
-function reset(uint256 am) public view returns (uint256){
+function getamountout(uint256 am) public view returns (uint256){
        uint256 public amout;
        amout = (am * 10 * (finish - start)) /
                 ((finish - start) - (now - start)));
