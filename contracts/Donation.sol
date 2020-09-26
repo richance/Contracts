@@ -60,7 +60,7 @@ function getamountout(uint256 am) public view returns (uint256){
        uint256 public amout;
        amout = (am * 10 * (finish - start)) /
                 ((finish - start) - (now - start)));
-       return(amout);
+       return amout;
 }
 
 function reset() public {
