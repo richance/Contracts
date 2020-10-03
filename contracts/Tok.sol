@@ -169,6 +169,7 @@ contract Tok is IERC20 {
             votet[treasury] > uint256((_totalSupply * 50) / 100),
             "Sprout: setNewTDao requires majority approval"
         );
+        require(msg.sender==tx.origin, "Sprout: setNewTDao requires non contract");
         treasuryDAO = treasury;
         emit NewTreasury(treasury);
         return true;
