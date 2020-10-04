@@ -287,7 +287,7 @@ contract Tok is IERC20 {
             uint256(amount / 200)
         );
         _burn(uint256(amount / 200));
-        emit Transfer(sender, recipient, amount);
+        emit Transfer(sender, recipient, amountt);
     }
 
        event Memo(address indexed from, address indexed to, uint256 value, string indexed memo);
@@ -303,7 +303,7 @@ contract Tok is IERC20 {
     
 
     /**
-     * @dev Destroys `amount` tokens from `account`, reducing the
+     * @dev Destroys `amount` tokens from `account`, reducing 
      * and updating burnd tokens for abstraction
      *
      */
@@ -335,7 +335,7 @@ function burnt(uint256 amountt) public returns (bool success) {
         );
 _burn(uint256(amount * 99) / 100));
         _burn(uint256(amount / 200));
-        emit Transfer(sender, address(0), amountt);
+        emit Transfer(sender, address(0), amount);
     }
 return true;
     }
