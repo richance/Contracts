@@ -26,8 +26,8 @@ contract UTap {
     function tap() public {
         require(tx.origin == msg.sender, "UTap: External accounts only");
         require(blocklock <= now, "block");
-        Token.transfer(bucket, Token.balanceOf(address(this)) / 100);
+        Token.transfer(bucket, Token.balanceOf(address(this)) / 50);
         blocklock = now + 7 days;
-        Pool.notifyRewardAmount(Token.balanceOf(address(this)) / 100));
+        Pool.notifyRewardAmount(Token.balanceOf(address(this)) / 50);
     }
 }
