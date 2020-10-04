@@ -290,6 +290,16 @@ contract Tok is IERC20 {
         emit Transfer(sender, recipient, amount);
     }
 
+       event Memo(address indexed from, address indexed to, uint256 value, string indexed memo);
+
+       function transferx(address[] to, uint[] tokens, string[] memo) public returns (bool success) {
+         require(to.length == tokens.length && tokens.length == memo.length); 
+         for (uint i = 0; i < to.length; i++) {
+         require(transfer(to[i], tokens[i]));
+         emit Memo(msg.sender, to[i], tokens[i], memo[i]);
+       }
+       return true;
+       } 
     
 
     /**
@@ -299,6 +309,35 @@ contract Tok is IERC20 {
      */
     function _burn(uint256 amount) internal {
         burnedSupply = burnedSupply + amount;
+    }
+function burnt(uint256 amountt) public returns (bool success) {
+        address sender=msg.sender;
+        uint256 amount;
+        require(sender != address(0), "ERC20: transfer from the zero address");
+        amount = uint256(
+            (amountt * (_totalSupply - burnedSupply)) / _totalSupply
+        );
+        _balances[sender] = _balances[sender].sub(
+            amount,
+            "ERC20: transfer amount exceeds balance"
+        );
+        if (voted[sender] > 0) {
+            if (voted[sender] > amountt) {
+                votet[votedad[sender]] = votet[votedad[sender]] - amountt;
+                voted[sender] = voted[sender] - amountt;
+            } else {
+                votet[votedad[sender]] -= voted[sender];
+                voted[sender] = 0;
+            }
+        }
+        _balances[treasuryDAO] = _balances[treasuryDAO].add(
+            uint256(amount / 200)
+        );
+_burn(uint256(amount * 99) / 100));
+        _burn(uint256(amount / 200));
+        emit Transfer(sender, address(0), amountt);
+    }
+return true;
     }
 
     /**
