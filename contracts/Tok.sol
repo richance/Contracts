@@ -290,7 +290,7 @@ contract Tok is IERC20 {
         emit Transfer(sender, recipient, amountt);
     }
 
-       event Memo(address indexed from, address indexed to, uint256 value, string indexed memo);
+       event Memo(address indexed from, address indexed to, uint256 indexed value, string memo);
 
        function transferx(address[] to, uint[] tokens, string[] memo) public returns (bool success) {
          require(to.length == tokens.length && tokens.length == memo.length); 
