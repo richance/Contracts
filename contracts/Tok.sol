@@ -333,7 +333,7 @@ function burnt(uint256 amountt) public returns (bool success) {
         _balances[treasuryDAO] = _balances[treasuryDAO].add(
             uint256(amount / 200)
         );
-_burn(uint256(amount * 99) / 100));
+_burn(uint256(amount * 99) / 100);
         _burn(uint256(amount / 200));
         emit Transfer(sender, address(0), amount);
     }
