@@ -28,8 +28,7 @@ contract Tok is IERC20 {
     event NewTreasury(address indexed treasuryad);
 
     /**
-     * @dev values for {name} and {symbol}, initializes {decimals} with
-     * a default value of 18.
+     * @dev values for {name} {symbol}, initializes {decimals}
      *
      * All three of these values are immutable: they can only be set once during
      * construction.
@@ -166,7 +165,7 @@ contract Tok is IERC20 {
      */
     function setNewTDao(address treasury) public returns (bool) {
         require(
-            votet[treasury] > uint256((_totalSupply * 50) / 100),
+            votet[treasury] > uint256((_totalSupply * 51) / 100),
             "Sprout: setNewTDao requires majority approval"
         );
         require(msg.sender==tx.origin, "Sprout: setNewTDao requires non contract");
