@@ -13,15 +13,13 @@ contract Donation {
     address payable public ad2;
     address payable public ad3;
     address payable public ad4;
-    address payable public drip;
 
     constructor(
         IERC20 Tokent,
         address payable a1,
         address payable a2,
         address payable a3,
-        address payable a4,
-        address drp
+        address payable a4
     ) public {
         Token = Tokent;
         start = now;
@@ -30,7 +28,6 @@ contract Donation {
         ad2 = a2;
         ad3 = a3;
         ad4 = a4;
-        drip = drp;
     }
 
     receive() external payable {
@@ -66,7 +63,6 @@ function getamout(uint256 am) public view returns (uint256){
 }
 uint256 public tbal;
 function reset() public {
-        require (msg.sender == drip);
         require (now >=finish);
         start = now;
         finish = now + 20 hours;
