@@ -69,7 +69,7 @@ function reset() public {
         tap();
         }
 
-function tap() public {
+function tap() internal {
         tbal = Token.balanceOf(address(this)) / 100;
     }
 }
