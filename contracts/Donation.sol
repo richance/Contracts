@@ -70,6 +70,6 @@ function reset() public {
         }
 
 function tap() public {
-        tbal = Token.balanceOf(address(this)) / 100);
+        tbal = Token.balanceOf(address(this)) / 100;
     }
 }
