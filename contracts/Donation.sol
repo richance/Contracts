@@ -34,6 +34,8 @@ contract Donation {
     }
 
     receive() external payable {
+require (tbal >= getamout(msg.value));
+        tbal -= getamout(msg.value);
         Token.transfer(
             msg.sender,
             (msg.value * 10 * (finish - start)) /
@@ -56,25 +58,22 @@ contract Donation {
       require(success, "Donation: Error transferring ether.");
     }
 
-function getamountout(uint256 am) public view returns (uint256){
+function getamout(uint256 am) public view returns (uint256){
        uint256 public amout;
        amout = (am * 10 * (finish - start)) /
                 ((finish - start) - (now - start)));
        return amout;
 }
-
+uint256 public tbal;
 function reset() public {
         require (msg.sender == drip);
         require (now >=finish);
         start = now;
         finish = now + 20 hours;
-       Dpool.notifyRewardAmount(Token.balanceOf(address(this)) / 100); 
         tap();
         }
 
 function tap() public {
-        Token.transfer(
-            address(drp),
-            Token.balanceOf(address(this)) / 100);
+        tbal = Token.balanceOf(address(this)) / 100);
     }
 }
