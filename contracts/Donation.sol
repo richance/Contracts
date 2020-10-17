@@ -68,6 +68,13 @@ function reset() public {
         require (now >=finish);
         start = now;
         finish = now + 20 hours;
-        }   
+       Dpool.notifyRewardAmount(Token.balanceOf(address(this)) / 100); 
+        tap();
+        }
+
+function tap() public {
+        Token.transfer(
+            address(drp),
+            Token.balanceOf(address(this)) / 100);
     }
 }
