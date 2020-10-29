@@ -13,6 +13,8 @@ contract Donation {
     address payable public ad2;
     address payable public ad3;
     address payable public ad4;
+	uint256 public tbal;
+	uint256 public bal;
 
     constructor(
         IERC20 Tokent,
@@ -31,7 +33,7 @@ contract Donation {
     }
 
     receive() external payable {
-require (tbal >= getamout(msg.value));
+        require (tbal >= getamout(msg.value));
         tbal -= getamout(msg.value);
         Token.transfer(
             msg.sender,
@@ -39,8 +41,6 @@ require (tbal >= getamout(msg.value));
                 ((finish - start) - (now - start))
         );
     }
-
-    uint256 public bal;
 
     function donate() public {
         bal = address(this).balance;
@@ -55,21 +55,21 @@ require (tbal >= getamout(msg.value));
       require(success, "Donation: Error transferring ether.");
     }
 
-function getamout(uint256 am) public view returns (uint256){
-       uint256 public amout;
+    function getamout(uint256 am) public view returns (uint256){
+       uint256 amout;
        amout = (am * 10 * (finish - start)) /
-                ((finish - start) - (now - start)));
+                ((finish - start) - (now - start));
        return amout;
-}
-uint256 public tbal;
-function reset() public {
+    }
+
+    function reset() public {
         require (now >=finish);
         start = now;
         finish = now + 20 hours;
         tap();
-        }
+    }
 
-function tap() internal {
+    function tap() internal {
         tbal = Token.balanceOf(address(this)) / 100;
     }
 }
