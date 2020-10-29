@@ -16,11 +16,11 @@ contract TreasuryDrip {
     }
 
     function tap() public {
+        require(blocklock <= now, "block");
         Token.transfer(
             bucket.treasuryDAO(),
             Token.balanceOf(address(this)) / 100
         );
-        require(blocklock <= now, "block");
         blocklock = now + 1 days;
     }
 }
